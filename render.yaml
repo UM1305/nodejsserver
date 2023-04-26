@@ -1,0 +1,9 @@
+build:
+  dockerfile: Dockerfile.render
+
+services:
+  - name: app
+    envs:
+      - key: NODE_ENV
+        value: production
+    start_cmd: npm start
