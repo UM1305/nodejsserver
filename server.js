@@ -225,6 +225,35 @@ var port =5000;
         }
     })
 
+    // Cancel Booking  
+    app.post('/cancelbooking',(req,res,err)=>{
+
+        let phone = req.body.unumber;
+        
+        try{
+            if(phone == '')
+            {
+                var s ={message : 'Please Enter The Number'}
+                return res.send(s)
+            }
+            var requests = new sql.Request();
+            requests.input('phonenumber',sql.Int,phone)
+            requests.execute('cancelbooking',(err,result)=>{
+                if(err){
+                    console.log(err,'cancel err#');
+                    // res.send(err)
+                }
+                else{
+                    console.log(result,'cancel#');
+                    res.send(result.recordsets)
+                }
+            })
+        }
+        catch(err){
+            res.send('Error While Execute The Procedure')
+        }
+    })
+
 app.listen(port, () => {
     console.log(`Server is running..${port}`);
 });
