@@ -43,6 +43,9 @@ var port =5000;
         else console.log('connected');
     });
 
+    app.get('/',(req,res,err)=>{
+        res.send('Hello World')
+    })
 
     // Login User
     app.post('/login',(req,res,err)=>{
